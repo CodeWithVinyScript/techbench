@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>VibeSync Events</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+<nav class="navbar">
+  <h1 class="logo">VibeSync</h1>
+
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="register.html">Register</a>
+    <a href="login.html">Login</a>
+    <a href="services.html">Services</a>
+    <a href="portfolio.html">Portfolio</a>
+    <a href="customize.html" class="btn">Customize</a>
+  </div>
+</nav>
+
+<!-- ================= HERO SECTION ================= -->
+<section class="hero">
+  <div class="hero-content">
+    <h2>Create Stunning Events with <span>3D Customization</span></h2>
+    <p>Design your dream event with real-time 3D experience and modern planning tools.</p>
+
+    <div class="hero-buttons">
+      <button onclick="goToCustomize()">Start Designing</button>
+      <button class="outline" onclick="scrollToSection()">Explore Services</button>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SERVICES SECTION ================= -->
+<section class="services" id="services">
+  <h2>Our Services</h2>
+
+  <div class="service-cards">
+    <div class="card">
+      <h3>Wedding Events</h3>
+      <p>Elegant and memorable wedding experiences.</p>
+    </div>
+
+    <div class="card">
+      <h3>Corporate Events</h3>
+      <p>Professional and impactful corporate setups.</p>
+    </div>
+
+    <div class="card">
+      <h3>Birthday Parties</h3>
+      <p>Fun and creative birthday celebrations.</p>
+    </div>
+
+    <div class="card">
+      <h3>Stage Decoration</h3>
+      <p>Modern stage design with lighting & themes.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PORTFOLIO SECTION ================= -->
+<section class="portfolio">
+  <h2>Our Work</h2>
+
+  <div class="portfolio-grid">
+  <div class="box">Event 1</div></div>
+</section>
+<!-- ================= CTA SECTION ================= -->
+<section class="cta">
+  <h2>Design Your Event Now</h2>
+  <button onclick="goToCustomize()">Start Customizing</button>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer">
+  <p>© 2026 VibeSync Events | Designed by You 🚀</p>
+</footer>
+
+<!-- ================= JS ================= -->
+<script src="js/main.js"></script>
+
+<script>
+  function goToCustomize() {
+    window.location.href = "customize.html";
+  }
+
+  function scrollToSection() {
+    document.getElementById("services").scrollIntoView({
+      behavior: "smooth"
+    });
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Customize Event - VibeSync</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: #0f172a;
+      color: white;
+    }
+
+    .container {
+      display: flex;
+      height: 100vh;
+    }
+
+    /* LEFT PANEL */
+    .controls {
+      width: 300px;
+      background: #020617;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .controls h2 {
+      margin-bottom: 15px;
+    }
+
+    .controls button, .controls select {
+      width: 100%;
+      margin: 10px 0;
+      padding: 10px;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    .controls button {
+      background: linear-gradient(45deg, #6366f1, #ec4899);
+      color: white;
+    }
+
+    /* 3D CANVAS */
+    #canvas-container {
+      flex: 1;
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <h1>VibeSync</h1>
+  <div>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="services.html">Services</a>
+    <a href="portfolio.html">Portfolio</a>
+  </div>
+</nav>
+
+<div class="container">
+
+  <!-- CONTROL PANEL -->
+  <div class="controls">
+    <h2>Customize</h2>
+
+    <select id="eventType">
+      <option value="wedding">Wedding</option>
+      <option value="birthday">Birthday</option>
+      <option value="corporate">Corporate</option>
+    </select>
+
+    <button onclick="changeStageColor()">Change Stage Color</button>
+    <button onclick="addLight()">Add Light</button>
+    <button onclick="addDecoration()">Add Decoration</button>
+    <button onclick="resetScene()">Reset</button>
+  </div>
+
+  <!-- 3D VIEW -->
+  <div id="canvas-container"></div>
+
+</div>
+
+<!-- THREE JS LIBS -->
+<script src="libs/three.min.js"></script>
+<script src="libs/OrbitControls.js"></script>
+
+<script>
+let scene, camera, renderer, stage;
+
+function init() {
+  scene = new THREE.Scene();
+  scene.background = new THREE.Color(0x0f172a);
+
+  camera = new THREE.PerspectiveCamera(
+    75,
+    window.innerWidth / window.innerHeight,
+    0.1,
+    1000
+  );
+
+  renderer = new THREE.WebGLRenderer({ antialias: true });
+  renderer.setSize(window.innerWidth - 300, window.innerHeight);
+
+  document.getElementById("canvas-container")
+    .appendChild(renderer.domElement);
+
+  // LIGHTS
+  const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+  scene.add(ambientLight);
+
+  const dirLight = new THREE.DirectionalLight(0xffffff, 1);
+  dirLight.position.set(5, 10, 7);
+  scene.add(dirLight);
+
+  // STAGE
+  const geometry = new THREE.BoxGeometry(6, 0.5, 6);
+  const material = new THREE.MeshStandardMaterial({ color: 0xff69b4 });
+
+  stage = new THREE.Mesh(geometry, material);
+  scene.add(stage);
+
+  // FLOOR
+  const floor = new THREE.Mesh(
+    new THREE.PlaneGeometry(50, 50),
+    new THREE.MeshStandardMaterial({ color: 0x111827 })
+  );
+  floor.rotation.x = -Math.PI / 2;
+  scene.add(floor);
+
+  camera.position.set(0, 5, 10);
+
+  const controls = new THREE.OrbitControls(camera, renderer.domElement);
+
+  animate();
+}
+
+function animate() {
+  requestAnimationFrame(animate);
+  renderer.render(scene, camera);
+}
+
+// 🎨 CHANGE COLOR
+function changeStageColor() {
+  stage.material.color.set(Math.random() * 0xffffff);
+}
+
+// 💡 ADD LIGHT
+function addLight() {
+  const light = new THREE.PointLight(0xffffff, 1);
+  light.position.set(
+    Math.random() * 5,
+    5,
+    Math.random() * 5
+  );
+  scene.add(light);
+}
+
+// 🎈 ADD DECORATION
+function addDecoration() {
+  const geometry = new THREE.SphereGeometry(0.5, 32, 32);
+  const material = new THREE.MeshStandardMaterial({ color: 0xff0000 });
+
+  const balloon = new THREE.Mesh(geometry, material);
+
+  balloon.position.set(
+    (Math.random() - 0.5) * 5,
+    2,
+    (Math.random() - 0.5) * 5
+  );
+
+  scene.add(balloon);
+}
+
+// 🔄 RESET
+function resetScene() {
+  while(scene.children.length > 0){ 
+    scene.remove(scene.children[0]); 
+  }
+  init();
+}
+
+// INIT
+init();
+
+</script>
+<canvas id="threeCanvas"></canvas>
+<button onclick="changeColor('#ff0000')">Red</button>
+<button onclick="changeColor('#00ff00')">Green</button>
+
+</body>
+</html>

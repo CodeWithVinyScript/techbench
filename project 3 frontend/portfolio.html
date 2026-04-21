@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Portfolio - VibeSync</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #0f172a;
+      color: white;
+    }
+
+    .portfolio-container {
+      padding: 50px 20px;
+      text-align: center;
+    }
+
+    .portfolio-container h2 {
+      font-size: 32px;
+      margin-bottom: 20px;
+    }
+
+    /* FILTER BUTTONS */
+    .filters {
+      margin-bottom: 30px;
+    }
+
+    .filters button {
+      margin: 5px;
+      padding: 10px 15px;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      background: #1e293b;
+      color: white;
+    }
+
+    .filters button:hover {
+      background: #6366f1;
+    }
+
+    /* GRID */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: #1e293b;
+      border-radius: 10px;
+      overflow: hidden;
+      transition: transform 0.3s;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+    }
+
+    .card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .card-content {
+      padding: 15px;
+    }
+
+    .card-content h3 {
+      margin: 10px 0;
+    }
+
+    .tag {
+      font-size: 12px;
+      color: #6366f1;
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <h1>VibeSync</h1>
+  <div>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="services.html">Services</a>
+    <a href="portfolio.html">Portfolio</a>
+    <a href="customize.html">Customize</a>
+  </div>
+</nav>
+
+<!-- PORTFOLIO -->
+<section class="portfolio-container">
+  <h2>Our Portfolio</h2>
+
+  <!-- FILTERS -->
+  <div class="filters">
+    <button onclick="filterSelection('all')">All</button>
+    <button onclick="filterSelection('wedding')">Wedding</button>
+    <button onclick="filterSelection('corporate')">Corporate</button>
+    <button onclick="filterSelection('birthday')">Birthday</button>
+  </div>
+
+  <!-- GRID -->
+  <div class="grid">
+
+    <!-- CARD -->
+    <div class="card wedding">
+      <img src="assets/event1.jpg">
+      <div class="card-content">
+        <h3>Royal Wedding</h3>
+        <p class="tag">Wedding</p>
+      </div>
+    </div>
+
+    <div class="card corporate">
+      <img src="assets/event2.jpg">
+      <div class="card-content">
+        <h3>Business Conference</h3>
+        <p class="tag">Corporate</p>
+      </div>
+    </div>
+
+    <div class="card birthday">
+      <img src="assets/event3.jpg">
+      <div class="card-content">
+        <h3>Birthday Bash</h3>
+        <p class="tag">Birthday</p>
+      </div>
+    </div>
+
+    <div class="card wedding">
+      <img src="assets/event4.jpg">
+      <div class="card-content">
+        <h3>Outdoor Wedding</h3>
+        <p class="tag">Wedding</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <p>© 2026 VibeSync Events | All Rights Reserved</p>
+</footer>
+
+<!-- JS -->
+<script>
+function filterSelection(category) {
+  let cards = document.getElementsByClassName("card");
+
+  for (let i = 0; i < cards.length; i++) {
+    if (category === "all") {
+      cards[i].style.display = "block";
+    } else {
+      if (cards[i].classList.contains(category)) {
+        cards[i].style.display = "block";
+      } else {
+        cards[i].style.display = "none";
+      }
+    }
+  }
+}
+</script>
+
+</body>
+</html>
